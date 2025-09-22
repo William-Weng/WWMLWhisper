@@ -22,7 +22,6 @@ final class ViewController: UIViewController {
                 switch result {
                 case .failure(let error): DispatchQueue.main.async { self.messageLabel.text = "\(error)" }
                 case .success(let url): DispatchQueue.main.async { self.messageLabel.text = "\(url)" }
-                    print(url)
                 }
             }
         }

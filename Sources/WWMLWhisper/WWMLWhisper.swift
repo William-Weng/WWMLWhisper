@@ -33,26 +33,26 @@ public extension WWMLWhisper {
     ///   - useFlashAttention: 是否使用高效實現注意力機制
     ///   - progress: 下載進度
     ///   - completion: 最後結果
-    func loadModel(_ model: WWMLWhisper.ModelProtocol, useGPU: Bool = false, useFlashAttention: Bool = true, progress: ((WWNetworking.DownloadProgressInformation) -> Void)? = nil, completion: @escaping (Result<URL, Error>) -> Void) {
+    func loadModel(_ model: WWMLWhisper.ModelProtocol, for directory: FileManager.SearchPathDirectory = .cachesDirectory, useGPU: Bool = false, useFlashAttention: Bool = true, progress: ((WWNetworking.DownloadProgressInformation) -> Void)? = nil, completion: @escaping (Result<URL, Error>) -> Void) {
         
-        guard let localModelURL = localModelURL(model),
+        guard let localModelURL = localModelURL(model, for: directory),
               let localModelPath = localModelURL.path().removingPercentEncoding
         else {
             return
         }
         
         if (FileManager.default._fileExists(with: localModelURL)) {
-            let isSuccess = loadModel(with: localModelPath, useGPU: useGPU, useFlashAttention: useFlashAttention)
-            if !isSuccess { completion(.failure(CustomError.notLoadModel(localModelURL))) }
+            let isSuccess = loadModel(with: localModelURL.path(), useGPU: useGPU, useFlashAttention: useFlashAttention)
+            if !isSuccess { completion(.failure(CustomError.notLoadModel(localModelURL))); return }
             completion(.success(localModelURL)); return
         }
         
-        downloadModel(model) { info in
+        downloadModel(model, for: directory) { info in
             progress?(info)
         } completion: { result in
             switch result {
             case .failure(let error): completion(.failure(error))
-            case .success(_): self.loadModel(model, useGPU: useGPU, useFlashAttention: useFlashAttention, progress: progress, completion: completion)
+            case .success(_): self.loadModel(model, for: directory, useGPU: useGPU, useFlashAttention: useFlashAttention, progress: progress, completion: completion)
             }
         }
     }
@@ -94,11 +94,13 @@ public extension WWMLWhisper {
 private extension WWMLWhisper {
     
     /// 本地端下載的已下載Model位置
-    /// - Parameter model: WWMLWhisper.ModelProtocol
+    /// - Parameters:
+    ///   - model: 下載模型類型
+    ///   - directory: 要存放在哪個資料夾
     /// - Returns: URL?
-    func localModelURL(_ model: WWMLWhisper.ModelProtocol) -> URL? {
+    func localModelURL(_ model: WWMLWhisper.ModelProtocol, for directory: FileManager.SearchPathDirectory) -> URL? {
         
-        guard let folder = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first else { return nil }
+        guard let folder = FileManager.default.urls(for: directory, in: .userDomainMask).first else { return nil }
         
         let localURL = folder.appendingPathComponent(model.filename())
         return localURL
@@ -107,11 +109,12 @@ private extension WWMLWhisper {
     /// 下載模型
     /// - Parameters:
     ///   - model: 下載模型類型
+    ///   - directory: 要存放在哪個資料夾
     ///   - progress: 下載進度
     ///   - completion: 下載結果
-    func downloadModel(_ model: WWMLWhisper.ModelProtocol, progress: ((WWNetworking.DownloadProgressInformation) -> Void)?, completion: @escaping (Result<URL, Error>) -> Void) {
+    func downloadModel(_ model: WWMLWhisper.ModelProtocol, for directory: FileManager.SearchPathDirectory, progress: ((WWNetworking.DownloadProgressInformation) -> Void)?, completion: @escaping (Result<URL, Error>) -> Void) {
         
-        guard let localModelURL = localModelURL(model) else { return }
+        guard let localModelURL = localModelURL(model, for: directory) else { return }
         
         _ = WWNetworking.shared.download(urlString: model.urlString(), progress: { info in
             progress?(info)

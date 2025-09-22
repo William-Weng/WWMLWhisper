@@ -11,14 +11,14 @@ https://github.com/user-attachments/assets/8ccc5274-2f24-4ad5-844d-3ff278d85d51
 ## [Installation with Swift Package Manager](https://medium.com/彼得潘的-swift-ios-app-開發問題解答集/使用-spm-安裝第三方套件-xcode-11-新功能-2c4ffcf85b4b)
 ```bash
 dependencies: [
-    .package(url: "https://github.com/William-Weng/WWMLWhisper.git", .upToNextMajor(from: "1.0.0"))
+    .package(url: "https://github.com/William-Weng/WWMLWhisper.git", .upToNextMajor(from: "1.0.1"))
 ]
 ```
 
 ## 可用函式
 |函式|說明|
 |-|-|
-|loadModel(_:useGPU:useFlashAttention:progress:completion:)|載入模型|
+|loadModel(_:for:useGPU:useFlashAttention:progress:completion:)|載入模型|
 |transcribe(with:wave:result:)|把分析的結果抄寫下來|
 |transcription()|將分析的結果轉寫成文字|
 
