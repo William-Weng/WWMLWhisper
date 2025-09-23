@@ -20,6 +20,7 @@ dependencies: [
 |-|-|
 |loadModel(_:for:useGPU:useFlashAttention:progress:completion:)|載入模型|
 |transcribe(with:wave:result:)|把分析的結果抄寫下來|
+|transcribe(with:wave:)|把分析的結果抄寫下來|
 |transcription()|將分析的結果轉寫成文字|
 
 ## Example

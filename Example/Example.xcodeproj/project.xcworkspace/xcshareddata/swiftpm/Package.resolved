@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/William-Weng/WWMLWhisper",
       "state" : {
-        "revision" : "d8eeb5be565fc799edb3480e8c0dd6dceb768915",
-        "version" : "1.0.1"
+        "revision" : "abf9ed2beeccffc74499a9cdf79a64a90ede08d4",
+        "version" : "1.0.2"
       }
     },
     {
