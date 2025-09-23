@@ -93,14 +93,16 @@ public extension WWMLWhisper {
     /// - Parameters:
     ///   - language: 分析語言
     ///   - wave: 聲音相關資訊
-    /// - Returns: Result<Bool, Error>
-    func transcribe(with language: String = "en", wave: WWMLWhisper.WaveInformation) async throws -> Bool {
+    func transcribe(with language: String = "en", wave: WWMLWhisper.WaveInformation) async throws {
         
         return try await withCheckedThrowingContinuation { continuation in
+            
             transcribe(with: language, wave: wave) { result in
                 switch result {
                 case .failure(let error): continuation.resume(throwing: error)
-                case .success(let isSuccess): continuation.resume(returning: isSuccess)
+                case .success(let isSuccess):
+                    if (!isSuccess) { continuation.resume(throwing: WWMLWhisper.CustomError.transcribeFailed); return }
+                    continuation.resume()
                 }
             }
         }

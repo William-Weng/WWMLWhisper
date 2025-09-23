@@ -15,7 +15,8 @@
 		817568052CA2C2B500B24577 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 817568042CA2C2B500B24577 /* Assets.xcassets */; };
 		817568082CA2C2B500B24577 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817568062CA2C2B500B24577 /* LaunchScreen.storyboard */; };
 		81A4A3922E82407100EA7348 /* WWMLWhisper in Frameworks */ = {isa = PBXBuildFile; productRef = 81A4A3912E82407100EA7348 /* WWMLWhisper */; };
-		81A4A3952E8246BA00EA7348 /* WWMLWhisper in Frameworks */ = {isa = PBXBuildFile; productRef = 81A4A3942E8246BA00EA7348 /* WWMLWhisper */; };
+		81A4A3982E824C5900EA7348 /* WWMLWhisper in Frameworks */ = {isa = PBXBuildFile; productRef = 81A4A3972E824C5900EA7348 /* WWMLWhisper */; };
+		81A4A39B2E824DDD00EA7348 /* WWMLWhisper in Frameworks */ = {isa = PBXBuildFile; productRef = 81A4A39A2E824DDD00EA7348 /* WWMLWhisper */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,8 +35,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81A4A39B2E824DDD00EA7348 /* WWMLWhisper in Frameworks */,
 				81A4A3922E82407100EA7348 /* WWMLWhisper in Frameworks */,
-				81A4A3952E8246BA00EA7348 /* WWMLWhisper in Frameworks */,
+				81A4A3982E824C5900EA7348 /* WWMLWhisper in Frameworks */,
 				810EE2322E815197001BB61B /* WWMLWhisper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -132,7 +134,8 @@
 			packageProductDependencies = (
 				810EE2312E815197001BB61B /* WWMLWhisper */,
 				81A4A3912E82407100EA7348 /* WWMLWhisper */,
-				81A4A3942E8246BA00EA7348 /* WWMLWhisper */,
+				81A4A3972E824C5900EA7348 /* WWMLWhisper */,
+				81A4A39A2E824DDD00EA7348 /* WWMLWhisper */,
 			);
 			productName = Example;
 			productReference = 817567F82CA2C2B400B24577 /* Example.app */;
@@ -163,7 +166,7 @@
 			);
 			mainGroup = 817567EF2CA2C2B400B24577;
 			packageReferences = (
-				81A4A3932E8246BA00EA7348 /* XCRemoteSwiftPackageReference "WWMLWhisper" */,
+				81A4A3992E824DDD00EA7348 /* XCRemoteSwiftPackageReference "WWMLWhisper" */,
 			);
 			productRefGroup = 817567F92CA2C2B400B24577 /* Products */;
 			projectDirPath = "";
@@ -429,12 +432,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		81A4A3932E8246BA00EA7348 /* XCRemoteSwiftPackageReference "WWMLWhisper" */ = {
+		81A4A3992E824DDD00EA7348 /* XCRemoteSwiftPackageReference "WWMLWhisper" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/William-Weng/WWMLWhisper";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.2;
+				minimumVersion = 1.0.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -448,9 +451,13 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = WWMLWhisper;
 		};
-		81A4A3942E8246BA00EA7348 /* WWMLWhisper */ = {
+		81A4A3972E824C5900EA7348 /* WWMLWhisper */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 81A4A3932E8246BA00EA7348 /* XCRemoteSwiftPackageReference "WWMLWhisper" */;
+			productName = WWMLWhisper;
+		};
+		81A4A39A2E824DDD00EA7348 /* WWMLWhisper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 81A4A3992E824DDD00EA7348 /* XCRemoteSwiftPackageReference "WWMLWhisper" */;
 			productName = WWMLWhisper;
 		};
 /* End XCSwiftPackageProductDependency section */

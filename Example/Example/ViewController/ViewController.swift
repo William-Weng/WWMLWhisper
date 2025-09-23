@@ -37,8 +37,7 @@ final class ViewController: UIViewController {
         
         Task {
             do {
-                let isSuccess = try await WWMLWhisper.shared.transcribe(wave: (data, ._16bits))
-                if !isSuccess { throw WWMLWhisper.CustomError.samplesError }
+                try await WWMLWhisper.shared.transcribe(wave: (data, ._16bits))
                 let message = try await WWMLWhisper.shared.transcription().get()
                 messageLabel.text = message
             } catch {

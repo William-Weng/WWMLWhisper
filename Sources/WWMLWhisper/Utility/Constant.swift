@@ -20,6 +20,7 @@ public extension WWMLWhisper {
         case notContext
         case runModelFailed
         case samplesError
+        case transcribeFailed
     }
 }
 
