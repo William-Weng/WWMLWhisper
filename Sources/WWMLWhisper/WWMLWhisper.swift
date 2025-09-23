@@ -62,11 +62,11 @@ public extension WWMLWhisper {
     ///   - language: 分析語言
     ///   - wave: 聲音相關資訊
     ///   - result: Result<Bool, Error>
-    func transcribe(with language: String = "en", wave: WWMLWhisper.WaveInformation, result: (Result<Bool, Error>) -> Void) async {
+    func transcribe(with language: String = "en", wave: WWMLWhisper.WaveInformation, result: (Result<Bool, Error>) -> Void) {
         
-        guard let samples = Optional.some(wave.data._normalizeWaveFile(type: wave.type)) else { result(.failure(CustomError.samplesError)); return }
+        let samples = wave.data._normalizeWaveFile(type: wave.type)
         
-        await transcribe(language: language, samples: samples) { _result_ in
+        transcribe(language: language, samples: samples) { _result_ in
             switch _result_ {
             case .failure(let error): result(.failure(error))
             case .success(let isSuccess): result(.success(isSuccess))
@@ -87,6 +87,23 @@ public extension WWMLWhisper {
         }
         
         return .success(transcription)
+    }
+    
+    /// 把分析的結果抄寫下來
+    /// - Parameters:
+    ///   - language: 分析語言
+    ///   - wave: 聲音相關資訊
+    /// - Returns: Result<Bool, Error>
+    func transcribe(with language: String = "en", wave: WWMLWhisper.WaveInformation) async throws -> Bool {
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            transcribe(with: language, wave: wave) { result in
+                switch result {
+                case .failure(let error): continuation.resume(throwing: error)
+                case .success(let isSuccess): continuation.resume(returning: isSuccess)
+                }
+            }
+        }
     }
 }
 
@@ -152,11 +169,11 @@ private extension WWMLWhisper {
     ///   - language: 分析語言
     ///   - samples: 標準化聲音取樣
     ///   - result: Result<Bool, Error>
-    func transcribe(language: String = "en", samples: [Float], result: (Result<Bool, Error>) -> Void) async {
+    func transcribe(language: String = "en", samples: [Float], result: (Result<Bool, Error>) -> Void) {
 
         guard let context = context else { return result(.failure(CustomError.notContext)) }
         
-        let cpuCount = await UIDevice._cpuCount()
+        let cpuCount = ProcessInfo.processInfo.processorCount
         let maxThreads = max(1, min(8, cpuCount - 2))
         
         var params = whisper_full_default_params(WHISPER_SAMPLING_GREEDY)

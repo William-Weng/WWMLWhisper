@@ -36,22 +36,13 @@ final class ViewController: UIViewController {
         }
         
         Task {
-            
-            await WWMLWhisper.shared.transcribe(wave: (data, ._16bits)) { result in
-                
-                switch result {
-                case .failure(let error): messageLabel.text = "\(error)"
-                case .success(let isSuccess): if !isSuccess { return }
-                    
-                    Task {
-                        let _result_ = await WWMLWhisper.shared.transcription()
-                        
-                        switch _result_ {
-                        case .failure(let error): messageLabel.text = "\(error)"
-                        case .success(let message): messageLabel.text = message
-                        }
-                    }
-                }
+            do {
+                let isSuccess = try await WWMLWhisper.shared.transcribe(wave: (data, ._16bits))
+                if !isSuccess { throw WWMLWhisper.CustomError.samplesError }
+                let message = try await WWMLWhisper.shared.transcription().get()
+                messageLabel.text = message
+            } catch {
+                messageLabel.text = "\(error)"
             }
         }
     }

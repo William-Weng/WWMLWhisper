@@ -144,12 +144,3 @@ extension FileManager {
     }
 }
 
-// MARK: - UIDevice
-extension UIDevice {
-    
-    /// [獲取當前設備上可用的處理核心CPU數量](https://developer.apple.com/documentation/foundation/processinfo)
-    /// - Returns: Int
-    static func _cpuCount() async -> Int {
-        await MainActor.run { return ProcessInfo.processInfo.processorCount }
-    }
-}
