@@ -3,8 +3,8 @@
 [![Swift-5.7](https://img.shields.io/badge/Swift-5.7-orange.svg?style=flat)](https://developer.apple.com/swift/) [![iOS-16.0](https://img.shields.io/badge/iOS-16.0-pink.svg?style=flat)](https://developer.apple.com/swift/) ![](https://img.shields.io/github/v/tag/William-Weng/WWMLWhisper) [![Swift Package Manager-SUCCESS](https://img.shields.io/badge/Swift_Package_Manager-SUCCESS-blue.svg?style=flat)](https://developer.apple.com/swift/) [![LICENSE](https://img.shields.io/badge/LICENSE-MIT-yellow.svg?style=flat)](https://developer.apple.com/swift/)
 
 ## [Introduction - 簡介](https://swiftpackageindex.com/William-Weng)
-- [Speech-to-text: TTS (using whisper.cpp)](https://github.com/ggml-org/whisper.cpp)
-- [語音轉文字: TTS (使用 whisper.cpp)](https://huggingface.co/ggerganov/whisper.cpp)
+- [Speech-to-text: STT (using whisper.cpp)](https://github.com/ggml-org/whisper.cpp)
+- [語音轉文字: STT (使用 whisper.cpp)](https://huggingface.co/ggerganov/whisper.cpp)
 
 https://github.com/user-attachments/assets/4711890f-c1f4-4d87-b0ef-a3754d6f2e5c
 
