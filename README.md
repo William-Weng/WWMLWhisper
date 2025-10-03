@@ -6,7 +6,7 @@
 - [Speech-to-text: TTS (using whisper.cpp)](https://github.com/ggml-org/whisper.cpp)
 - [語音轉文字: TTS (使用 whisper.cpp)](https://huggingface.co/ggerganov/whisper.cpp)
 
-https://github.com/user-attachments/assets/8ccc5274-2f24-4ad5-844d-3ff278d85d51
+https://github.com/user-attachments/assets/4711890f-c1f4-4d87-b0ef-a3754d6f2e5c
 
 ## [Installation with Swift Package Manager](https://medium.com/彼得潘的-swift-ios-app-開發問題解答集/使用-spm-安裝第三方套件-xcode-11-新功能-2c4ffcf85b4b)
 ```bash
