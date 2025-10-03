@@ -142,5 +142,23 @@ extension FileManager {
             return .failure(error)
         }
     }
+    
+    /// 新增資料夾
+    /// - Parameters:
+    ///   - url: 資料夾位置
+    ///   - createIntermediates: 是否立刻建立
+    ///   - attributes: 特性值
+    /// - Returns: Result<Bool, Error>
+    func _createDirectory(at url: URL?, createIntermediates: Bool = true, attributes: [FileAttributeKey : Any]? = nil) -> Result<Bool, Error> {
+        
+        guard var url = url else { return .failure(WWMLWhisper.CustomError.isUrlNull) }
+        
+        do {
+            try createDirectory(at: url, withIntermediateDirectories: createIntermediates, attributes: attributes)
+            return .success(true)
+        } catch {
+            return .failure(error)
+        }
+    }
 }
 

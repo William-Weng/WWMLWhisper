@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/William-Weng/WWMLWhisper",
       "state" : {
-        "revision" : "abf9ed2beeccffc74499a9cdf79a64a90ede08d4",
-        "version" : "1.0.2"
+        "revision" : "eb938cc9c56dc38adb4920a54c3dbed1556c437a",
+        "version" : "1.0.3"
       }
     },
     {
@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/William-Weng/WWNetworking.git",
       "state" : {
-        "revision" : "141032e2894b6b25fabfbaef97e96363a2027f33",
-        "version" : "1.8.0"
+        "revision" : "9296271ad9cf481ef552af88c14c3df5b00ff514",
+        "version" : "1.8.11"
       }
     }
   ],

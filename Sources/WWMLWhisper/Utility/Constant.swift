@@ -6,22 +6,11 @@
 //
 
 import UIKit
+import WWNetworking
 
 // MARK: - typealias
 public extension WWMLWhisper {
     typealias WaveInformation = (data: Data, type: WWMLWhisper.AudioBitDepthType)
-}
-
-// MARK: - Error
-public extension WWMLWhisper {
-    
-    enum CustomError: Error {
-        case notLoadModel(_ url: URL)
-        case notContext
-        case runModelFailed
-        case samplesError
-        case transcribeFailed
-    }
 }
 
 // MARK: - Protocol
@@ -30,6 +19,23 @@ public extension WWMLWhisper {
     protocol ModelProtocol {
         func filename() -> String
         func urlString() -> String
+    }
+}
+
+// MARK: - Error
+public extension WWMLWhisper {
+    
+    /// 自定義錯誤
+    enum CustomError: Error {
+        case isUrlNull
+        case isFolderNull
+        case notLocalModel
+        case notLoadModel(_ url: URL)
+        case notContext
+        case notFileExists
+        case runModelFailed
+        case samplesError
+        case transcribeFailed
     }
 }
 
@@ -42,6 +48,13 @@ public extension WWMLWhisper {
         case _16bits
         case _24bits
         case _32bits
+    }
+    
+    /// 檔案下載狀態事件
+    enum DownloadEvent {
+        case progress(_ progress: WWNetworking.DownloadProgressInformation)
+        case finished(_ url: URL)
+        case error(_ error: Error)
     }
 }
 

@@ -33,11 +33,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Whisper" id="ASc-YT-plj">
-                        <barButtonItem key="leftBarButtonItem" title="Whiper" id="Sia-ho-DSA">
-                            <connections>
-                                <action selector="whiper:" destination="BYZ-38-t0r" id="ujb-Az-QWf"/>
-                            </connections>
-                        </barButtonItem>
+                        <leftBarButtonItems>
+                            <barButtonItem title="Whiper" id="Sia-ho-DSA">
+                                <connections>
+                                    <action selector="whiper:" destination="BYZ-38-t0r" id="ujb-Az-QWf"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Sound" id="RTN-X4-Cxl">
+                                <connections>
+                                    <action selector="playSound" destination="BYZ-38-t0r" id="6dF-y1-27h"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" title="LoadModel" id="Qae-vx-5aN">
                             <connections>
                                 <action selector="loadModel:" destination="BYZ-38-t0r" id="4Ot-PQ-9qi"/>

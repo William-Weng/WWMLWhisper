@@ -6,24 +6,43 @@
 //
 
 import UIKit
+import AVFoundation
 import WWMLWhisper
 
 // MARK: - ViewController
 final class ViewController: UIViewController {
+    
+    private var audioPlayer: AVAudioPlayer?
     
     @IBOutlet weak var messageLabel: UILabel!
     
     @IBAction func loadModel(_ sender: UIBarButtonItem) {
         
         Task {
-            await WWMLWhisper.shared.loadModel(WWMLWhisper.ModelType.Tiny.default, useGPU: false) { progess in
-                print(progess)
-            } completion: { result in
+            
+            for try await result in await WWMLWhisper.shared.loadModel(WWMLWhisper.ModelType.Tiny.default, useGPU: false) {
                 switch result {
-                case .failure(let error): DispatchQueue.main.async { self.messageLabel.text = "\(error)" }
-                case .success(let url): DispatchQueue.main.async { self.messageLabel.text = "\(url)" }
+                case .progress(let progress): print(progress)
+                case .finished(let url): self.messageLabel.text = "\(url)"
+                case .error(let error): self.messageLabel.text = "\(error)"
                 }
             }
+        }
+    }
+    
+    @IBAction func playSound() {
+        
+        guard let url = Bundle.main.url(forResource: "jfk", withExtension: "wav") else { return }
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+            
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer?.play()
+            
+        } catch let error {
+            messageLabel.text = "\(error)"
         }
     }
     

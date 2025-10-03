@@ -12,7 +12,7 @@ let package = Package(
         .library(name: "WWMLWhisper", targets: ["WWMLWhisper"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/William-Weng/WWNetworking.git", from: "1.8.0")
+        .package(url: "https://github.com/William-Weng/WWNetworking.git", from: "1.8.11")
     ],
     targets: [
         .target(name: "WWMLWhisper", dependencies: ["Whisper", "WWNetworking"]),
