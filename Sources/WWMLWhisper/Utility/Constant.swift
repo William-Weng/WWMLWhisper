@@ -1,6 +1,6 @@
 //
 //  Constant.swift
-//  Example
+//  WWMLWhisper
 //
 //  Created by William.Weng on 2025/9/22.
 //
@@ -60,11 +60,11 @@ public extension WWMLWhisper {
     /// 模型列表
     enum Model {
         
-        case tiny(_ type: ModelType.Tiny)
-        case base(_ type: ModelType.Base)
-        case small(_ type: ModelType.Small)
-        case medium(_ type: ModelType.Medium)
-        case large(_ type: ModelType.Large)
+        case tiny(_ type: ModelType.Tiny = .default)
+        case base(_ type: ModelType.Base = .default)
+        case small(_ type: ModelType.Small = .default)
+        case medium(_ type: ModelType.Medium = .default)
+        case large(_ type: ModelType.Large = .default)
         
         /// 輸出模型
         /// - Returns: WWMLWhisper.ModelProtocol
