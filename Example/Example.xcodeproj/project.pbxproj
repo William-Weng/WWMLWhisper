@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -172,7 +172,7 @@
 			);
 			mainGroup = 817567EF2CA2C2B400B24577;
 			packageReferences = (
-				814631762F04B1A1006264B9 /* XCLocalSwiftPackageReference "../../WWMLWhisper" */,
+				8146317B2F04B2F1006264B9 /* XCRemoteSwiftPackageReference "WWMLWhisper" */,
 			);
 			productRefGroup = 817567F92CA2C2B400B24577 /* Products */;
 			projectDirPath = "";
@@ -437,12 +437,16 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		814631762F04B1A1006264B9 /* XCLocalSwiftPackageReference "../../WWMLWhisper" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../../WWMLWhisper;
+/* Begin XCRemoteSwiftPackageReference section */
+		8146317B2F04B2F1006264B9 /* XCRemoteSwiftPackageReference "WWMLWhisper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/William-Weng/WWMLWhisper";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.2;
+			};
 		};
-/* End XCLocalSwiftPackageReference section */
+/* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		810EE2312E815197001BB61B /* WWMLWhisper */ = {
