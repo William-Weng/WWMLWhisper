@@ -58,24 +58,6 @@ public extension WWMLWhisper {
         }
     }
     
-    func checkLoadLocalModel(_ model: WWMLWhisper.ModelProtocol, for directory: FileManager.SearchPathDirectory, useGPU: Bool, useFlashAttention: Bool) -> Result<URL, Error> {
-        
-        switch localModelURL(model, for: directory) {
-        case .failure(let error): return .failure(error)
-        case .success(let localModelURL):
-            
-            guard let localModelPath = localModelURL.path().removingPercentEncoding else { return .failure(CustomError.notLocalModel) }
-            
-            if (FileManager.default._fileExists(with: localModelURL)) {
-                let isSuccess = loadModel(with: localModelPath, useGPU: useGPU, useFlashAttention: useFlashAttention)
-                if !isSuccess { return .failure(CustomError.notLoadModel(localModelURL)) }
-                return .success(localModelURL)
-            }
-            
-            return .failure(CustomError.notFileExists)
-        }
-    }
-    
     /// 把分析的結果抄寫下來
     /// - Parameters:
     ///   - language: 分析語言
@@ -168,6 +150,31 @@ private extension WWMLWhisper {
         switch FileManager.default._createDirectory(at: folder) {
         case .success(_): return .success(folder.appendingPathComponent(model.filename()))
         case .failure(let error): return .failure(error)
+        }
+    }
+    
+    /// 檢測本地Model有沒有下載下來，沒有的話就重新下載
+    /// - Parameters:
+    ///   - model: WWMLWhisper.ModelProtocol
+    ///   - directory: FileManager.SearchPathDirectory
+    ///   - useGPU: Bool
+    ///   - useFlashAttention: Bool
+    /// - Returns: Result<URL, Error>
+    func checkLoadLocalModel(_ model: WWMLWhisper.ModelProtocol, for directory: FileManager.SearchPathDirectory, useGPU: Bool, useFlashAttention: Bool) -> Result<URL, Error> {
+        
+        switch localModelURL(model, for: directory) {
+        case .failure(let error): return .failure(error)
+        case .success(let localModelURL):
+            
+            guard let localModelPath = localModelURL.path().removingPercentEncoding else { return .failure(CustomError.notLocalModel) }
+            
+            if (FileManager.default._fileExists(with: localModelURL)) {
+                let isSuccess = loadModel(with: localModelPath, useGPU: useGPU, useFlashAttention: useFlashAttention)
+                if !isSuccess { return .failure(CustomError.notLoadModel(localModelURL)) }
+                return .success(localModelURL)
+            }
+            
+            return .failure(CustomError.notFileExists)
         }
     }
     
