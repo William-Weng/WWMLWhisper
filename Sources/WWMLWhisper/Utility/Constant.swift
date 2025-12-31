@@ -56,11 +56,33 @@ public extension WWMLWhisper {
         case finished(_ url: URL)
         case error(_ error: Error)
     }
+    
+    /// 模型列表
+    enum Model {
+        
+        case tiny(_ type: ModelType.Tiny)
+        case base(_ type: ModelType.Base)
+        case small(_ type: ModelType.Small)
+        case medium(_ type: ModelType.Medium)
+        case large(_ type: ModelType.Large)
+        
+        /// 輸出模型
+        /// - Returns: WWMLWhisper.ModelProtocol
+        func value() -> WWMLWhisper.ModelProtocol {
+            switch self {
+            case .tiny(let type): return type
+            case .base(let type): return type
+            case .small(let type): return type
+            case .medium(let type): return type
+            case .large(let type): return type
+            }
+        }
+    }
 }
 
 // MARK: - 模型列表
 public extension WWMLWhisper.ModelType {
-    
+        
     /// 迷你模型
     enum Tiny: String, WWMLWhisper.ModelProtocol {
         

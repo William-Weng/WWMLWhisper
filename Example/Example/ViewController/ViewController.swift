@@ -20,11 +20,11 @@ final class ViewController: UIViewController {
         
         Task {
             
-            for try await result in await WWMLWhisper.shared.loadModel(WWMLWhisper.ModelType.Tiny.default, useGPU: false) {
+            for try await result in await WWMLWhisper.shared.loadModel(.tiny(.default)) {
                 switch result {
+                case .error(let error): self.messageLabel.text = "\(error)"
                 case .progress(let progress): print(progress)
                 case .finished(let url): self.messageLabel.text = "\(url)"
-                case .error(let error): self.messageLabel.text = "\(error)"
                 }
             }
         }

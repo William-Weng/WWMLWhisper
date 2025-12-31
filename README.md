@@ -11,7 +11,7 @@ https://github.com/user-attachments/assets/4711890f-c1f4-4d87-b0ef-a3754d6f2e5c
 ## [Installation with Swift Package Manager](https://medium.com/彼得潘的-swift-ios-app-開發問題解答集/使用-spm-安裝第三方套件-xcode-11-新功能-2c4ffcf85b4b)
 ```bash
 dependencies: [
-    .package(url: "https://github.com/William-Weng/WWMLWhisper.git", .upToNextMajor(from: "1.1.2"))
+    .package(url: "https://github.com/William-Weng/WWMLWhisper.git", .upToNextMajor(from: "1.1.3"))
 ]
 ```
 
@@ -44,11 +44,11 @@ final class ViewController: UIViewController {
         
         Task {
             
-            for try await result in await WWMLWhisper.shared.loadModel(WWMLWhisper.ModelType.Tiny.default, useGPU: false) {
+            for try await result in await WWMLWhisper.shared.loadModel(.tiny(.default)) {
                 switch result {
+                case .error(let error): self.messageLabel.text = "\(error)"
                 case .progress(let progress): print(progress)
                 case .finished(let url): self.messageLabel.text = "\(url)"
-                case .error(let error): self.messageLabel.text = "\(error)"
                 }
             }
         }

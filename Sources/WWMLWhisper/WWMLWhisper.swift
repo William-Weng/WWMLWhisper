@@ -33,9 +33,9 @@ public extension WWMLWhisper {
     ///   - useFlashAttention: 是否使用高效實現注意力機制
     ///   - progress: 下載進度
     ///   - completion: 最後結果
-    func loadModel(_ model: WWMLWhisper.ModelProtocol, for directory: FileManager.SearchPathDirectory = .applicationSupportDirectory, useGPU: Bool = false, useFlashAttention: Bool = true, progress: ((WWNetworking.DownloadProgressInformation) -> Void)? = nil, completion: @escaping (Result<URL, Error>) -> Void) {
+    func loadModel(_ model: WWMLWhisper.Model, for directory: FileManager.SearchPathDirectory = .applicationSupportDirectory, useGPU: Bool = false, useFlashAttention: Bool = true, progress: ((WWNetworking.DownloadProgressInformation) -> Void)? = nil, completion: @escaping (Result<URL, Error>) -> Void) {
         
-        let result = checkLoadLocalModel(model, for: directory, useGPU: useGPU, useFlashAttention: useFlashAttention)
+        let result = checkLoadLocalModel(model.value(), for: directory, useGPU: useGPU, useFlashAttention: useFlashAttention)
         
         switch result {
         case .success(let url): DispatchQueue.main.async { completion(.success(url)) }
@@ -47,7 +47,7 @@ public extension WWMLWhisper {
                 return DispatchQueue.main.async { completion(.failure(error)) }
             }
             
-            downloadModel(model, for: directory) { [weak self] info in
+            downloadModel(model.value(), for: directory) { [weak self] info in
                 progress?(info)
             } completion: { result in
                 switch result {
@@ -99,7 +99,7 @@ public extension WWMLWhisper {
     ///   - model: 使用的模型類型 (下載或讀取)
     ///   - useGPU: 是否使用GPU運算
     ///   - useFlashAttention: 是否使用高效實現注意力機制
-    func loadModel(_ model: WWMLWhisper.ModelProtocol, for directory: FileManager.SearchPathDirectory = .cachesDirectory, useGPU: Bool = false, useFlashAttention: Bool = true) async -> AsyncThrowingStream<DownloadEvent, Error> {
+    func loadModel(_ model: WWMLWhisper.Model, for directory: FileManager.SearchPathDirectory = .cachesDirectory, useGPU: Bool = false, useFlashAttention: Bool = true) async -> AsyncThrowingStream<DownloadEvent, Error> {
         
         return AsyncThrowingStream { continuation in
             
