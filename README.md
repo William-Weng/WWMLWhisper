@@ -26,7 +26,7 @@ dependencies: [
 |函式|說明|
 |-|-|
 |loadModel(_:for:useGPU:useFlashAttention:)|載入模型|
-|transcribe(with:wave:result:)|把分析的結果抄寫下來|
+|transcribe(with:wave:)|把分析的結果抄寫下來|
 
 ## Example
 ```swift
