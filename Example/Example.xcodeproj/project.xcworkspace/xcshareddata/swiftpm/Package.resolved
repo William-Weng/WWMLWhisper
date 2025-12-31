@@ -1,22 +1,13 @@
 {
-  "originHash" : "0cf6a19db595cec7683fa6540089354c4197767d2c71c1971fa161eabd3df18c",
+  "originHash" : "17c48846a8d3800512b191ef33124981b759458b0ddc43a9b78a47e895ddf22c",
   "pins" : [
-    {
-      "identity" : "wwmlwhisper",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/William-Weng/WWMLWhisper",
-      "state" : {
-        "revision" : "eb938cc9c56dc38adb4920a54c3dbed1556c437a",
-        "version" : "1.0.3"
-      }
-    },
     {
       "identity" : "wwnetworking",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/William-Weng/WWNetworking.git",
       "state" : {
-        "revision" : "9296271ad9cf481ef552af88c14c3df5b00ff514",
-        "version" : "1.8.11"
+        "revision" : "2c7ce462a79c7c894dbb20dfa766b3eada9d2644",
+        "version" : "1.9.0"
       }
     }
   ],
