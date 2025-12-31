@@ -38,13 +38,13 @@ public extension WWMLWhisper {
         let result = checkLoadLocalModel(model.value(), for: directory, useGPU: useGPU, useFlashAttention: useFlashAttention)
         
         switch result {
-        case .success(let url): DispatchQueue.main.async { completion(.success(url)) }
+        case .success(let url): Task { @MainActor in completion(.success(url)) }
         case .failure(let error):
             
             guard let customError = error as? CustomError,
                   case .notFileExists = customError
             else {
-                return DispatchQueue.main.async { completion(.failure(error)) }
+                Task { @MainActor in DispatchQueue.main.async { completion(.failure(error)) }}; return
             }
             
             downloadModel(model.value(), for: directory) { [weak self] info in
