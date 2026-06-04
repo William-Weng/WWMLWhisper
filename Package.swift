@@ -16,7 +16,7 @@ let package = Package(
     ],
     targets: [
         .target(name: "WWMLWhisper", dependencies: ["Whisper", "WWNetworking"]),
-        .binaryTarget(name: "Whisper", url: "https://github.com/William-Weng/WWMLWhisper/releases/download/0.0.0/Whisper.xcframework.zip", checksum: "23bed1f72efa0012b843281cba7eec9d97373fc808e3cad0b1d3c1de50d26d67")
+        .binaryTarget(name: "Whisper", url: "https://github.com/William-Weng/WWMLWhisper/releases/download/1.1.3/Whisper.xcframework.zip", checksum: "23bed1f72efa0012b843281cba7eec9d97373fc808e3cad0b1d3c1de50d26d67")
     ],
     swiftLanguageVersions: [
         .v5
